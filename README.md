@@ -4,27 +4,27 @@ Marketing site for Hercx — AI expert for non-technical CEOs.
 
 Static landing using the live Framer identity (Sora + Inter, navy `#090b11`, accent `#2F68FF`) and existing product copy. Wordmark only until Grok-bot logo files are supplied.
 
-- Source: https://github.com/HercxAi/hercx.ai
+- Repo: https://github.com/HercxAi/hercx.ai
 - Current product page: https://hercx.framer.ai/
-- Apex `hercx.ai` is on Cloudflare and still proxies to a Vercel project with **no deployment** (`DEPLOYMENT_NOT_FOUND`). Mail (`MX 1 smtp.google.com`) is live — do not change it.
+- Apex `hercx.ai` still proxies to a Vercel project with **no deployment** (`DEPLOYMENT_NOT_FOUND`)
+- Mail is live (`MX 1 smtp.google.com`) — **do not change MX, DKIM, or DMARC**
 
-## Go live on hercx.ai (one DNS change)
+## Put this site on hercx.ai
 
-Pick **one** origin. Never point the same records at two hosts. **Do not touch MX, DKIM, or DMARC.**
+Pick **one** origin. Never point the same records at two hosts.
 
-### A — Cloudflare Pages (recommended, same registrar)
+### Cloudflare Pages (fastest — same login as DNS)
 
 1. Cloudflare Dashboard → Workers & Pages → Create → Connect Git → `HercxAi/hercx.ai`
 2. Build command: none. Output directory: `/`
 3. Custom domains → `hercx.ai` and `www.hercx.ai`
 4. Cloudflare will replace the dead Vercel A records. Leave MX alone.
 
-### B — GitHub Pages custom domain
+### GitHub Pages
 
-This repo deploys to GitHub Pages from `main`. After the first green Actions run:
-
-1. Confirm https://hercxai.github.io/hercx.ai/ loads
-2. In Cloudflare DNS, **grey cloud / DNS only**:
+1. This repo → **Settings → Pages**
+2. Source: **Deploy from a branch** → `main` / `/ (root)` → Save
+3. After https://hercxai.github.io/hercx.ai/ loads, in Cloudflare DNS set **DNS only** (grey cloud):
 
 | Name | Type | Value |
 | --- | --- | --- |
@@ -34,12 +34,11 @@ This repo deploys to GitHub Pages from `main`. After the first green Actions run
 | `@` | A | `185.199.111.153` |
 | `www` | CNAME | `hercxai.github.io` |
 
-3. Remove leftover Vercel A/AAAA records on the apex.
-4. In the repo: Settings → Pages → Custom domain `hercx.ai` → enable HTTPS.
+Remove leftover Vercel A/AAAA records. Then Pages → Custom domain `hercx.ai` → Enable HTTPS.
 
-### C — Point the existing Framer site at hercx.ai
+### Existing Framer site (needs a paid Framer plan)
 
-Needs a paid Framer plan. In Framer: Site Settings → Hosting → Connect `hercx.ai`. Then DNS-only:
+Framer: Site Settings → Hosting → Connect `hercx.ai`. DNS only:
 
 | Name | Type | Value |
 | --- | --- | --- |
