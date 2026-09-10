@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hercx.ai — AI expert for non-technical CEOs</title>
+  <meta name="description" content="Hercx gives non-technical CEOs the executive context, clear answers, and next moves to lead with confidence." />
+  <link rel="canonical" href="https://hercx.ai/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hercx.ai/" />
+  <meta property="og:title" content="Hercx.ai — AI expert for non-technical CEOs" />
+  <meta property="og:description" content="Hercx gives non-technical CEOs the executive context, clear answers, and next moves to lead with confidence." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hercx.ai — AI expert for non-technical CEOs" />
+  <meta name="twitter:description" content="Hercx gives non-technical CEOs the executive context, clear answers, and next moves to lead with confidence." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy-0: #090b11;
+      --navy-1: #0b0f17;
+      --navy-2: #0d121c;
+      --navy-3: #111722;
+      --navy-4: #151d2b;
+      --accent: #2f68ff;
+      --accent-2: #3e78ff;
+      --accent-soft: #7fa2ff;
+      --ice: #f7f9ff;
+      --ice-2: #eaf0ff;
+      --slate: #7a879e;
+      --slate-2: #65728a;
+      --line: rgba(127,162,255,.18);
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--navy-0); color: var(--ice); font-family: Inter, system-ui, sans-serif; }
+    body { min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(9,11,17,.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .wordmark { font-family: Sora, sans-serif; font-weight: 600; letter-spacing: -.03em; font-size: 20px; }
+    .wordmark span { color: var(--accent-soft); }
+    .nav-links { display: flex; gap: 28px; color: var(--slate); font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: var(--ice); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--accent); color: white; border: 0; border-radius: 999px;
+      padding: 12px 18px; font-weight: 600; font-size: 14px; cursor: pointer;
+    }
+    .btn:hover { background: var(--accent-2); }
+    .btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--ice); }
+    .hero { padding: 96px 0 72px; }
+    .eyebrow {
+      color: var(--accent-soft); letter-spacing: .16em; text-transform: uppercase;
+      font-size: 12px; font-weight: 600; margin-bottom: 18px;
+    }
+    h1, h2, h3 { font-family: Sora, sans-serif; letter-spacing: -.04em; }
+    h1 { font-size: clamp(36px, 6vw, 72px); line-height: 1.04; max-width: 16ch; }
+    .lede { margin-top: 22px; max-width: 58ch; color: #d7e0f5; font-size: 18px; line-height: 1.6; }
+    .note { margin-top: 16px; color: var(--slate); font-size: 14px; }
+    .hero-actions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+    .grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: start; }
+    .briefing {
+      background: linear-gradient(180deg, #111722, #0d121c);
+      border: 1px solid var(--line); border-radius: 24px; padding: 22px;
+      box-shadow: 0 30px 80px rgba(47,104,255,.12);
+    }
+    .brief-kicker { color: var(--slate); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    .briefing h3 { margin: 10px 0 8px; font-size: 22px; }
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
+    .metric { background: rgba(47,104,255,.08); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+    .metric b { display: block; font-family: Sora, sans-serif; font-size: 24px; }
+    .metric span { color: var(--slate); font-size: 12px; }
+    section { padding: 72px 0; }
+    .os h2 { font-size: clamp(28px, 4vw, 48px); max-width: 16ch; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
+    .step { background: var(--navy-2); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
+    .num { color: var(--accent-soft); font-family: Sora, sans-serif; font-size: 13px; margin-bottom: 10px; }
+    .cta {
+      background: radial-gradient(800px 240px at 20% 0%, rgba(47,104,255,.22), transparent 55%), var(--navy-2);
+      border: 1px solid var(--line); border-radius: 28px; padding: 48px;
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center;
+    }
+    form { display: grid; gap: 10px; }
+    input, textarea {
+      width: 100%; background: #090b11; border: 1px solid var(--line); color: var(--ice);
+      border-radius: 12px; padding: 12px 14px; font: inherit;
+    }
+    footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--slate); font-size: 13px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 56px; }
+      .grid, .steps, .cta { grid-template-columns: 1fr; }
+      .cta { padding: 28px; }
+      h1 { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="wordmark" href="/">Hercx<span>.ai</span></a>
+      <nav class="nav-links">
+        <a href="#briefing">Briefing</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#request-access">Early access</a>
+      </nav>
+      <a class="btn" href="#request-access">Request early access</a>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="wrap grid">
+        <div>
+          <p class="eyebrow">The AI expert for non-technical CEOs</p>
+          <h1>Your AI expert for the decisions only you can make.</h1>
+          <p class="lede">Hercx turns the questions stuck in your head into clear answers, focused next steps, and the operating context to move with confidence.</p>
+          <p class="note">No technical translation layer required.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#request-access">Request early access</a>
+            <a class="btn btn-ghost" href="#how-it-works">See how it works</a>
+          </div>
+        </div>
+        <aside class="briefing" id="briefing">
+          <p class="brief-kicker">Hercx / CEO briefing</p>
+          <p class="note">Live context · Today’s focus</p>
+          <h3>Protect pipeline without delaying the next hire.</h3>
+          <p class="lede" style="font-size:15px;margin-top:8px">Hercx found a move that protects momentum while keeping the operating plan intact.</p>
+          <div class="metrics">
+            <div class="metric"><span>Runway</span><b>12.4 mo.</b><span>Up 0.8 this quarter</span></div>
+            <div class="metric"><span>Ready now</span><b>03</b><span>Decisions need your call</span></div>
+          </div>
+          <p class="note" style="margin-top:16px">A customer signal just changed. Hercx connected the change to this week’s executive priorities.</p>
+        </aside>
+      </div>
+    </section>
+    <section id="how-it-works">
+      <div class="wrap os">
+        <p class="eyebrow">The CEO operating system</p>
+        <h2>Less searching. More decisive moves.</h2>
+        <p class="lede">Hercx organizes the signal around the questions that matter to a CEO—then makes the next move legible before the moment passes.</p>
+        <div class="steps">
+          <article class="step">
+            <div class="num">01</div>
+            <h3>Ask in plain English.</h3>
+            <p class="note">Start with the question you already have. Hercx meets you in the context of your company.</p>
+          </article>
+          <article class="step">
+            <div class="num">02</div>
+            <h3>See the real trade-off.</h3>
+            <p class="note">Get the upside, risk, and second-order effects in the same executive view—without the spreadsheet chase.</p>
+          </article>
+          <article class="step">
+            <div class="num">03</div>
+            <h3>Act with the room.</h3>
+            <p class="note">Bring a recommendation that connects the decision to the business—not just another task to debate.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="request-access">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <p class="eyebrow">Your next briefing</p>
+            <h2>The next hard question deserves a clear answer.</h2>
+            <p class="lede">Tell Hercx what is changing. It will carry the context—so you can carry the decision.</p>
+          </div>
+          <form action="mailto:hello@hercx.ai" method="post" enctype="text/plain">
+            <input name="name" type="text" placeholder="Name" required />
+            <input name="email" type="email" placeholder="Work email" required />
+            <textarea name="question" rows="4" placeholder="The decision on your desk"></textarea>
+            <button class="btn" type="submit">Request early access</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap">
+    <div>Hercx.ai — AI expert for non-technical CEOs</div>
+    <div><a href="mailto:hello@hercx.ai">hello@hercx.ai</a></div>
+  </footer>
+</body>
+</html>
