@@ -16,6 +16,9 @@
   <meta name="twitter:description" content="Your AI expert for the decisions only you can make." />
   <meta name="theme-color" content="#090b11" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="brand/seal-256.png" type="image/png" sizes="256x256" />
+  <meta property="og:image" content="https://hercx.ai/og.jpg" />
+  <meta name="twitter:image" content="https://hercx.ai/og.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -78,11 +81,17 @@
       gap: 16px;
     }
     .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-family: Sora, sans-serif;
       font-weight: 600;
       font-size: 20px;
       letter-spacing: -0.04em;
     }
+    .brand img { width: 40px; height: 40px; border-radius: 50%; }
+    .hero-seal { display: flex; justify-content: center; }
+    .hero-seal img { width: min(420px, 88vw); height: auto; }
     .brand span { color: var(--accent-soft); }
     .nav-links { display: flex; align-items: center; gap: 28px; color: var(--text-dim); font-size: 14px; font-weight: 500; }
     .nav-links a:hover { color: var(--ice); }
@@ -264,7 +273,7 @@
 <body>
   <header>
     <div class="wrap nav">
-      <a class="brand" href="/">Hercx<span>.ai</span></a>
+      <a class="brand" href="/"><img src="brand/seal-mark.png" alt="" width="40" height="40" />Hercx<span>.ai</span></a>
       <nav class="nav-links">
         <a href="#how">How it works</a>
         <a href="#outcomes">Executive outcomes</a>
@@ -295,9 +304,18 @@
         <p class="note"><span class="dot"></span> No technical translation layer required.</p>
       </div>
 
+      <div class="hero-seal">
+        <img src="brand/seal.png" alt="Hercx AI forged seal" width="512" height="512" />
+      </div>
+    </section>
+
+    <section class="wrap" style="padding-top:0">
       <aside class="briefing" aria-label="Hercx CEO briefing">
         <div class="briefing-top">
-          <span>Hercx / CEO briefing</span>
+          <span style="display:flex;align-items:center;gap:8px">
+            <img src="brand/seal-mark.png" alt="" width="20" height="20" style="border-radius:50%" />
+            Hercx / CEO briefing
+          </span>
           <span class="live">Live context</span>
         </div>
         <div class="focus">
