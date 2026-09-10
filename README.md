@@ -1,8 +1,8 @@
 # hercx.ai
 
-Marketing site for Hercx — AI expert for non-technical CEOs.
+Marketing site for Hercx — the hired-gun CTO every founder and CEO can use like a real one.
 
-Static landing using the live Framer identity (Sora + Inter, navy `#090b11`, accent `#2F68FF`) and existing product copy. Wordmark only until Grok-bot logo files are supplied.
+Static landing using the Hercx seal, Sora + Inter, navy `#090b11`, accent `#2F68FF`.
 
 - Repo: https://github.com/HercxAi/hercx.ai
 - Current product page: https://hercx.framer.ai/
