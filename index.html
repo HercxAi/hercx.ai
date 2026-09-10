@@ -4,188 +4,446 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hercx.ai — AI expert for non-technical CEOs</title>
-  <meta name="description" content="Hercx gives non-technical CEOs the executive context, clear answers, and next moves to lead with confidence." />
+  <meta name="description" content="Hercx turns the questions stuck in your head into clear answers, focused next steps, and the operating context to move with confidence." />
   <link rel="canonical" href="https://hercx.ai/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://hercx.ai/" />
   <meta property="og:title" content="Hercx.ai — AI expert for non-technical CEOs" />
-  <meta property="og:description" content="Hercx gives non-technical CEOs the executive context, clear answers, and next moves to lead with confidence." />
+  <meta property="og:description" content="Your AI expert for the decisions only you can make." />
+  <meta property="og:site_name" content="Hercx.ai" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Hercx.ai — AI expert for non-technical CEOs" />
-  <meta name="twitter:description" content="Hercx gives non-technical CEOs the executive context, clear answers, and next moves to lead with confidence." />
+  <meta name="twitter:description" content="Your AI expert for the decisions only you can make." />
+  <meta name="theme-color" content="#090b11" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy-0: #090b11;
-      --navy-1: #0b0f17;
-      --navy-2: #0d121c;
-      --navy-3: #111722;
-      --navy-4: #151d2b;
-      --accent: #2f68ff;
-      --accent-2: #3e78ff;
-      --accent-soft: #7fa2ff;
-      --ice: #f7f9ff;
-      --ice-2: #eaf0ff;
-      --slate: #7a879e;
-      --slate-2: #65728a;
-      --line: rgba(127,162,255,.18);
-      --white: #ffffff;
+      --ink: #090b11;
+      --surface: #0d121c;
+      --surface-2: #111722;
+      --line: rgba(127, 162, 255, 0.16);
+      --accent: #2F68FF;
+      --accent-2: #3E78FF;
+      --accent-soft: #7FA2FF;
+      --ice: #F7F9FF;
+      --muted: #65728A;
+      --muted-2: #7A879E;
+      --text: #F4F6FB;
+      --text-dim: #B7C0D1;
+      --ok: #6EE7B7;
+      --radius: 20px;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { background: var(--navy-0); color: var(--ice); font-family: Inter, system-ui, sans-serif; }
-    body { min-height: 100vh; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background: var(--ink);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(900px 500px at 78% 8%, rgba(47, 104, 255, 0.18), transparent 60%),
+        radial-gradient(700px 420px at 8% 0%, rgba(47, 104, 255, 0.08), transparent 55%);
+      z-index: 0;
+    }
     a { color: inherit; text-decoration: none; }
-    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    button, [role="button"] { cursor: pointer; font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; position: relative; z-index: 1; }
+    .display { font-family: Sora, Inter, sans-serif; letter-spacing: -0.045em; }
+
     header {
-      position: sticky; top: 0; z-index: 20;
+      position: sticky;
+      top: 0;
+      z-index: 20;
       backdrop-filter: blur(16px);
-      background: rgba(9,11,17,.72);
-      border-bottom: 1px solid var(--line);
+      background: rgba(9, 11, 17, 0.8);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-    .wordmark { font-family: Sora, sans-serif; font-weight: 600; letter-spacing: -.03em; font-size: 20px; }
-    .wordmark span { color: var(--accent-soft); }
-    .nav-links { display: flex; gap: 28px; color: var(--slate); font-size: 14px; font-weight: 500; }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 16px;
+    }
+    .brand {
+      font-family: Sora, sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: -0.04em;
+    }
+    .brand span { color: var(--accent-soft); }
+    .nav-links { display: flex; align-items: center; gap: 28px; color: var(--text-dim); font-size: 14px; font-weight: 500; }
     .nav-links a:hover { color: var(--ice); }
+    .nav-cta { display: inline-flex; }
+    .menu-btn {
+      display: none;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 0;
+      color: var(--ice);
+    }
+    .mobile-nav {
+      display: none;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      padding: 8px 20px 16px;
+    }
+    .mobile-nav a {
+      display: flex;
+      min-height: 44px;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-dim);
+    }
+
     .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: var(--accent); color: white; border: 0; border-radius: 999px;
-      padding: 12px 18px; font-weight: 600; font-size: 14px; cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.18s ease;
     }
-    .btn:hover { background: var(--accent-2); }
-    .btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--ice); }
-    .hero { padding: 96px 0 72px; }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: var(--accent-2); }
+    .btn-ghost { background: rgba(17, 23, 34, 0.8); border-color: rgba(255,255,255,0.08); color: var(--ice); }
+    .btn-ghost:hover { border-color: rgba(127,162,255,0.4); }
+    .btn-sm { padding: 10px 16px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
+      padding: 72px 0 40px;
+    }
     .eyebrow {
-      color: var(--accent-soft); letter-spacing: .16em; text-transform: uppercase;
-      font-size: 12px; font-weight: 600; margin-bottom: 18px;
+      display: inline-flex;
+      border: 1px solid rgba(127,162,255,0.28);
+      background: rgba(47,104,255,0.08);
+      color: var(--accent-soft);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
-    h1, h2, h3 { font-family: Sora, sans-serif; letter-spacing: -.04em; }
-    h1 { font-size: clamp(36px, 6vw, 72px); line-height: 1.04; max-width: 16ch; }
-    .lede { margin-top: 22px; max-width: 58ch; color: #d7e0f5; font-size: 18px; line-height: 1.6; }
-    .note { margin-top: 16px; color: var(--slate); font-size: 14px; }
-    .hero-actions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
-    .grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: start; }
+    h1 {
+      font-size: clamp(40px, 5.4vw, 68px);
+      line-height: 0.98;
+      margin: 22px 0 18px;
+      max-width: 12ch;
+    }
+    .lede { color: var(--text-dim); font-size: 18px; max-width: 38ch; }
+    .hero-actions { display: flex; gap: 12px; margin: 28px 0 16px; flex-wrap: wrap; }
+    .note { color: var(--muted-2); font-size: 13px; display: flex; align-items: center; gap: 8px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px rgba(110,231,183,0.12); }
+
     .briefing {
-      background: linear-gradient(180deg, #111722, #0d121c);
-      border: 1px solid var(--line); border-radius: 24px; padding: 22px;
-      box-shadow: 0 30px 80px rgba(47,104,255,.12);
+      background: linear-gradient(180deg, rgba(17,23,34,0.92), rgba(13,18,28,0.94));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: var(--shadow);
     }
-    .brief-kicker { color: var(--slate); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
-    .briefing h3 { margin: 10px 0 8px; font-size: 22px; }
-    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }
-    .metric { background: rgba(47,104,255,.08); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
-    .metric b { display: block; font-family: Sora, sans-serif; font-size: 24px; }
-    .metric span { color: var(--slate); font-size: 12px; }
-    section { padding: 72px 0; }
-    .os h2 { font-size: clamp(28px, 4vw, 48px); max-width: 16ch; }
+    .briefing-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; color: var(--muted-2); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+    .live { border: 1px solid rgba(127,162,255,0.3); color: var(--accent-soft); border-radius: 999px; padding: 4px 8px; }
+    .focus {
+      background: #10182a;
+      border: 1px solid rgba(47,104,255,0.22);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .focus h3 { font-size: 20px; line-height: 1.25; margin: 6px 0 8px; }
+    .kicker { color: var(--accent-soft); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+    .metric { background: var(--surface-2); border-radius: 14px; padding: 14px; }
+    .metric b { display: block; font-family: Sora, sans-serif; font-size: 28px; letter-spacing: -0.04em; }
+    .signal {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--surface-2); border-radius: 14px; padding: 14px;
+    }
+    .signal-ico {
+      width: 28px; height: 28px; border-radius: 8px; background: rgba(47,104,255,0.16);
+      color: var(--accent-soft); display: grid; place-items: center; flex: none; font-size: 14px;
+    }
+    .layer { margin-top: 12px; color: var(--muted-2); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+
+    .section { padding: 88px 0; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .section h2 { font-size: clamp(32px, 4vw, 52px); line-height: 1.05; max-width: 14ch; }
+    .label { color: var(--accent-soft); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 14px; }
+    .copy { color: var(--text-dim); font-size: 17px; max-width: 42ch; }
+
     .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
-    .step { background: var(--navy-2); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
-    .num { color: var(--accent-soft); font-family: Sora, sans-serif; font-size: 13px; margin-bottom: 10px; }
-    .cta {
-      background: radial-gradient(800px 240px at 20% 0%, rgba(47,104,255,.22), transparent 55%), var(--navy-2);
-      border: 1px solid var(--line); border-radius: 28px; padding: 48px;
-      display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center;
+    .step {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      padding: 24px;
+      min-height: 220px;
     }
-    form { display: grid; gap: 10px; }
+    .num { font-family: Sora, sans-serif; color: var(--accent-soft); font-size: 13px; letter-spacing: 0.08em; margin-bottom: 16px; }
+    .step h3 { font-size: 22px; margin-bottom: 10px; }
+
+    .cta-band {
+      background: linear-gradient(180deg, #0d121c, #10182a);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+    form { display: grid; gap: 12px; }
+    label { font-size: 12px; color: var(--muted-2); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; display: grid; gap: 6px; }
     input, textarea {
-      width: 100%; background: #090b11; border: 1px solid var(--line); color: var(--ice);
-      border-radius: 12px; padding: 12px 14px; font: inherit;
+      width: 100%;
+      background: #0b1019;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--ice);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font: inherit;
+      text-transform: none;
+      letter-spacing: normal;
+      font-weight: 400;
     }
-    footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--slate); font-size: 13px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    @media (max-width: 860px) {
-      .nav-links { display: none; }
-      .hero { padding-top: 56px; }
-      .grid, .steps, .cta { grid-template-columns: 1fr; }
-      .cta { padding: 28px; }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+    textarea { min-height: 96px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 28px 0 48px;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    footer a:hover { color: var(--ice); }
+
+    @media (max-width: 900px) {
+      .hero, .split, .steps, .cta-band, .form-row, .metrics { grid-template-columns: 1fr; }
+      .nav-links, .nav-cta { display: none; }
+      .menu-btn { display: inline-flex; }
       h1 { max-width: none; }
+      .section { padding: 64px 0; }
+      .cta-band { padding: 28px; }
+      .hero { padding-top: 48px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap nav">
-      <a class="wordmark" href="/">Hercx<span>.ai</span></a>
+      <a class="brand" href="/">Hercx<span>.ai</span></a>
       <nav class="nav-links">
-        <a href="#briefing">Briefing</a>
-        <a href="#how-it-works">How it works</a>
-        <a href="#request-access">Early access</a>
+        <a href="#how">How it works</a>
+        <a href="#outcomes">Executive outcomes</a>
+        <a href="#access">Request access</a>
       </nav>
-      <a class="btn" href="#request-access">Request early access</a>
+      <a class="btn btn-primary btn-sm nav-cta" href="#access">Request access</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" id="menu-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" hidden>
+      <a href="#how">How it works</a>
+      <a href="#outcomes">Executive outcomes</a>
+      <a href="#access">Request access</a>
     </div>
   </header>
+
   <main>
-    <section class="hero">
-      <div class="wrap grid">
-        <div>
-          <p class="eyebrow">The AI expert for non-technical CEOs</p>
-          <h1>Your AI expert for the decisions only you can make.</h1>
-          <p class="lede">Hercx turns the questions stuck in your head into clear answers, focused next steps, and the operating context to move with confidence.</p>
-          <p class="note">No technical translation layer required.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#request-access">Request early access</a>
-            <a class="btn btn-ghost" href="#how-it-works">See how it works</a>
+    <section class="wrap hero">
+      <div>
+        <p class="eyebrow">The AI expert for non-technical CEOs</p>
+        <h1 class="display">Your AI expert for the decisions only you can make.</h1>
+        <p class="lede">Hercx turns the questions stuck in your head into clear answers, focused next steps, and the operating context to move with confidence.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#access">Meet Hercx</a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <p class="note"><span class="dot"></span> No technical translation layer required.</p>
+      </div>
+
+      <aside class="briefing" aria-label="Hercx CEO briefing">
+        <div class="briefing-top">
+          <span>Hercx / CEO briefing</span>
+          <span class="live">Live context</span>
+        </div>
+        <div class="focus">
+          <div class="kicker">Today’s focus</div>
+          <h3 class="display">Protect pipeline without delaying the next hire.</h3>
+          <p class="copy">Hercx found a move that protects momentum while keeping the operating plan intact.</p>
+        </div>
+        <div class="metrics">
+          <div class="metric">
+            <div class="kicker">Runway</div>
+            <b>12.4 mo.</b>
+            <p class="copy">Up 0.8 this quarter</p>
+          </div>
+          <div class="metric">
+            <div class="kicker">Ready now</div>
+            <b>03</b>
+            <p class="copy">Decisions need your call</p>
           </div>
         </div>
-        <aside class="briefing" id="briefing">
-          <p class="brief-kicker">Hercx / CEO briefing</p>
-          <p class="note">Live context · Today’s focus</p>
-          <h3>Protect pipeline without delaying the next hire.</h3>
-          <p class="lede" style="font-size:15px;margin-top:8px">Hercx found a move that protects momentum while keeping the operating plan intact.</p>
-          <div class="metrics">
-            <div class="metric"><span>Runway</span><b>12.4 mo.</b><span>Up 0.8 this quarter</span></div>
-            <div class="metric"><span>Ready now</span><b>03</b><span>Decisions need your call</span></div>
-          </div>
-          <p class="note" style="margin-top:16px">A customer signal just changed. Hercx connected the change to this week’s executive priorities.</p>
-        </aside>
-      </div>
-    </section>
-    <section id="how-it-works">
-      <div class="wrap os">
-        <p class="eyebrow">The CEO operating system</p>
-        <h2>Less searching. More decisive moves.</h2>
-        <p class="lede">Hercx organizes the signal around the questions that matter to a CEO—then makes the next move legible before the moment passes.</p>
-        <div class="steps">
-          <article class="step">
-            <div class="num">01</div>
-            <h3>Ask in plain English.</h3>
-            <p class="note">Start with the question you already have. Hercx meets you in the context of your company.</p>
-          </article>
-          <article class="step">
-            <div class="num">02</div>
-            <h3>See the real trade-off.</h3>
-            <p class="note">Get the upside, risk, and second-order effects in the same executive view—without the spreadsheet chase.</p>
-          </article>
-          <article class="step">
-            <div class="num">03</div>
-            <h3>Act with the room.</h3>
-            <p class="note">Bring a recommendation that connects the decision to the business—not just another task to debate.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section id="request-access">
-      <div class="wrap">
-        <div class="cta">
+        <div class="signal">
+          <div class="signal-ico">~</div>
           <div>
-            <p class="eyebrow">Your next briefing</p>
-            <h2>The next hard question deserves a clear answer.</h2>
-            <p class="lede">Tell Hercx what is changing. It will carry the context—so you can carry the decision.</p>
+            <strong>A customer signal just changed.</strong>
+            <p class="copy">Hercx connected the change to this week’s executive priorities.</p>
           </div>
-          <form action="mailto:hello@hercx.ai" method="post" enctype="text/plain">
-            <input name="name" type="text" placeholder="Name" required />
-            <input name="email" type="email" placeholder="Work email" required />
-            <textarea name="question" rows="4" placeholder="The decision on your desk"></textarea>
-            <button class="btn" type="submit">Request early access</button>
-          </form>
         </div>
+        <div class="layer">Executive reasoning layer</div>
+      </aside>
+    </section>
+
+    <section class="wrap section" id="outcomes">
+      <div class="split">
+        <div>
+          <p class="label">The CEO operating system</p>
+          <h2 class="display">Less searching. More decisive moves.</h2>
+        </div>
+        <p class="copy">Hercx organizes the signal around the questions that matter to a CEO—then makes the next move legible before the moment passes.</p>
+      </div>
+    </section>
+
+    <section class="wrap section" id="how" style="padding-top:0">
+      <div class="steps">
+        <article class="step">
+          <div class="num">01</div>
+          <h3 class="display">Ask in plain English.</h3>
+          <p class="copy">Start with the question you already have. Hercx meets you in the context of your company.</p>
+        </article>
+        <article class="step">
+          <div class="num">02</div>
+          <h3 class="display">See the real trade-off.</h3>
+          <p class="copy">Get the upside, risk, and second-order effects in the same executive view—without the spreadsheet chase.</p>
+        </article>
+        <article class="step">
+          <div class="num">03</div>
+          <h3 class="display">Act with the room.</h3>
+          <p class="copy">Bring a recommendation that connects the decision to the business—not just another task to debate.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap section" id="access">
+      <div class="cta-band">
+        <div>
+          <p class="label">Your next briefing</p>
+          <h2 class="display">The next hard question deserves a clear answer.</h2>
+          <p class="copy" style="margin-top:16px">Tell Hercx what is changing. It will carry the context—so you can carry the decision.</p>
+        </div>
+        <form id="access-form">
+          <div class="form-row">
+            <label>Name
+              <input name="name" autocomplete="name" required />
+            </label>
+            <label>Work email
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+          </div>
+          <label>Company
+            <input name="company" autocomplete="organization" />
+          </label>
+          <label>What is changing?
+            <textarea name="question" placeholder="The decision on your desk this week."></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit" id="access-submit">Request early access</button>
+        </form>
       </div>
     </section>
   </main>
-  <footer class="wrap">
-    <div>Hercx.ai — AI expert for non-technical CEOs</div>
-    <div><a href="mailto:hello@hercx.ai">hello@hercx.ai</a></div>
-  </footer>
+
+  <div class="wrap">
+    <footer>
+      <div>© 2026 Hercx.ai · AI executive intelligence</div>
+      <a href="mailto:jeff@hercx.ai">jeff@hercx.ai</a>
+    </footer>
+  </div>
+  <script>
+    (function () {
+      var btn = document.getElementById("menu-btn");
+      var nav = document.getElementById("mobile-nav");
+      if (btn && nav) {
+        btn.addEventListener("click", function () {
+          var open = nav.hasAttribute("hidden") === false;
+          if (open) {
+            nav.setAttribute("hidden", "");
+            nav.style.display = "none";
+            btn.setAttribute("aria-expanded", "false");
+            btn.setAttribute("aria-label", "Open menu");
+          } else {
+            nav.removeAttribute("hidden");
+            nav.style.display = "block";
+            btn.setAttribute("aria-expanded", "true");
+            btn.setAttribute("aria-label", "Close menu");
+          }
+        });
+        nav.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            nav.setAttribute("hidden", "");
+            nav.style.display = "none";
+            btn.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+      var form = document.getElementById("access-form");
+      if (form) {
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          var data = new FormData(form);
+          var name = String(data.get("name") || "").trim();
+          var email = String(data.get("email") || "").trim();
+          var company = String(data.get("company") || "").trim();
+          var question = String(data.get("question") || "").trim();
+          var body = [
+            name && "Name: " + name,
+            email && "Email: " + email,
+            company && "Company: " + company,
+            question && "What is changing:\n" + question
+          ].filter(Boolean).join("\n");
+          window.location.href =
+            "mailto:jeff@hercx.ai?subject=" +
+            encodeURIComponent("Hercx early access") +
+            "&body=" +
+            encodeURIComponent(body);
+          var submit = document.getElementById("access-submit");
+          if (submit) submit.textContent = "Opening mail…";
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

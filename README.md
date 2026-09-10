@@ -2,20 +2,44 @@
 
 Marketing site for Hercx — AI expert for non-technical CEOs.
 
-This repo is a static landing that reuses the live Framer site identity
-(Sora + Inter, navy `#090b11`, accent `#2F68FF`) and existing copy.
-No new logo was invented. Drop Grok-bot brand assets here when ready.
+Static landing using the live Framer identity (Sora + Inter, navy `#090b11`, accent `#2F68FF`) and existing product copy. Wordmark only until Grok-bot logo files are supplied.
 
-Live today:
-- Product page: https://hercx.framer.ai/
-- Domain: https://hercx.ai/ currently 404s (Cloudflare proxy → dead Vercel deployment)
+- Source: https://github.com/HercxAi/hercx.ai
+- Current product page: https://hercx.framer.ai/
+- Apex `hercx.ai` is on Cloudflare and still proxies to a Vercel project with **no deployment** (`DEPLOYMENT_NOT_FOUND`). Mail (`MX 1 smtp.google.com`) is live — do not change it.
 
-## Option A — Point hercx.ai at the existing Framer site (fastest)
+## Go live on hercx.ai (one DNS change)
 
-Needs a paid Framer plan.
+Pick **one** origin. Never point the same records at two hosts. **Do not touch MX, DKIM, or DMARC.**
 
-1. In Framer: Site Settings → Hosting → Domains → Connect a domain you own → `hercx.ai`
-2. In Cloudflare DNS for `hercx.ai`, set records to **DNS only** (grey cloud, not proxied):
+### A — Cloudflare Pages (recommended, same registrar)
+
+1. Cloudflare Dashboard → Workers & Pages → Create → Connect Git → `HercxAi/hercx.ai`
+2. Build command: none. Output directory: `/`
+3. Custom domains → `hercx.ai` and `www.hercx.ai`
+4. Cloudflare will replace the dead Vercel A records. Leave MX alone.
+
+### B — GitHub Pages custom domain
+
+This repo deploys to GitHub Pages from `main`. After the first green Actions run:
+
+1. Confirm https://hercxai.github.io/hercx.ai/ loads
+2. In Cloudflare DNS, **grey cloud / DNS only**:
+
+| Name | Type | Value |
+| --- | --- | --- |
+| `@` | A | `185.199.108.153` |
+| `@` | A | `185.199.109.153` |
+| `@` | A | `185.199.110.153` |
+| `@` | A | `185.199.111.153` |
+| `www` | CNAME | `hercxai.github.io` |
+
+3. Remove leftover Vercel A/AAAA records on the apex.
+4. In the repo: Settings → Pages → Custom domain `hercx.ai` → enable HTTPS.
+
+### C — Point the existing Framer site at hercx.ai
+
+Needs a paid Framer plan. In Framer: Site Settings → Hosting → Connect `hercx.ai`. Then DNS-only:
 
 | Name | Type | Value |
 | --- | --- | --- |
@@ -23,31 +47,9 @@ Needs a paid Framer plan.
 | `@` | A | `31.43.161.6` |
 | `www` | CNAME | `sites.framer.app` |
 
-3. Remove the current proxied A/AAAA records that send apex traffic to the dead Vercel origin.
-4. **Do not touch MX** (`smtp.google.com`) or existing Google DKIM / Cloudflare DMARC TXT records. That mail (`hello@hercx.ai`, `jeff@hercx.ai`) stays live.
+## Brand tokens
 
-Notes:
-- `www.hercx.ai` currently does not resolve. The CNAME above creates it.
-- Framer does not use IPv6 AAAA records; extra AAAA rows can block SSL.
-- DNS usually settles in minutes, sometimes up to 24 hours.
-
-## Option B — Host this repo on Cloudflare Pages (same registrar)
-
-1. Cloudflare Dashboard → Workers & Pages → Create → Pages → Connect Git → `HercxAi/hercx.ai`
-2. Build command: none. Output directory: `/`
-3. Custom domains → `hercx.ai` and `www.hercx.ai`
-4. Keep MX / DKIM / DMARC records as-is.
-
-## Option C — Attach this repo to a new Vercel project
-
-`hercx.ai` already reaches a Vercel edge error (`DEPLOYMENT_NOT_FOUND`).
-Create a fresh Vercel project from this repo and add the domain there.
-Still keep MX records in Cloudflare.
-
-## Brand tokens from the live Framer site
-
-- Display: Sora
-- Body: Inter
+- Display: Sora · Body: Inter
 - Navy: `#090b11` `#0b0f17` `#0d121c` `#111722`
 - Accent: `#2F68FF` `#3E78FF` `#7FA2FF`
 - Ice: `#F7F9FF` `#EAF0FF`
